@@ -1,0 +1,53 @@
+<!-- template header.html -->
+{% import "macros.html" as macros %}
+<div id="roof">
+    <div id="navBar">
+        <div id="top">
+            {% include "blocks/header_meta_links.html" %}
+        </div>
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+    {% if settings.SHOW_LOGO %}
+    <td id="logoContainer">
+        <div id="logo">
+            <a href="{% url questions %}?start_over=true"><img 
+                src="{{ settings.SITE_LOGO_URL|media }}" 
+                title="{% trans %}back to home page{% endtrans %}"
+                alt="{% trans site=settings.APP_SHORT_NAME %}{{site}} logo{% endtrans %}"/></a>
+        </div>
+    </td>
+    {% endif %}
+    <td id="navTabContainer" valign="bottom" align="left">
+        <div class="nav">
+            <a 
+                id="nav_questions"
+                href="{% url questions %}"
+                {% if active_tab == 'questions' %}class="on"{% endif %}
+            >{% trans %}questions{% endtrans %}</a>
+            <a 
+                id="nav_tags"
+                href="{% url tags %}"
+                {% if active_tab == 'tags' %}class="on"{% endif %}
+            >{% trans %}tags{% endtrans %}</a>
+            <a 
+                id="nav_users"
+                href="{% url users %}"
+                {% if active_tab == 'users' %}class="on"{% endif %}
+            >{% trans %}users{% endtrans %}</a>
+            <a 
+                id="nav_badges"
+                href="{% url badges %}"
+                {% if active_tab == 'badges' %}class="on"{% endif %}
+            >{% trans %}badges{% endtrans %}</a>
+            <a 
+                id="nav_ask"
+                href="{% url ask %}"
+                class="{% if active_tab == 'ask' %}on{% else %}special{% endif %}"
+            >{% trans %}ask a question{% endtrans %}</a>
+        </div>
+    </td>
+          </tr>
+        </table>
+    </div>
+</div>
+<!-- end template header.html -->

@@ -1,0 +1,11 @@
+include ez_setup.py
+recursive-include authenticator *
+recursive-exclude authenticator *.pyc
+recursive-exclude .git
+prune dist
+prune tmp
+prune build
+exclude settings.py
+exclude manage.py
+exclude __init__.py
+exclude urls.py

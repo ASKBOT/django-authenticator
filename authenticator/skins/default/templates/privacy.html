@@ -1,0 +1,12 @@
+{% extends "one_column_body.html" %}
+<!-- privacy.html -->
+{% block title %}{% spaceless %}{% trans %}Privacy policy{% endtrans %}{% endspaceless %}{% endblock %}
+{% block content %}
+<div class="headNormal">
+    {% trans %}Privacy policy{% endtrans %}
+</div>
+<div id="main-body" style="width:100%">
+    {{settings.FORUM_PRIVACY}}
+</div>
+{% endblock %}
+<!-- end privacy.html -->

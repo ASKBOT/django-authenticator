@@ -1,0 +1,81 @@
+{% extends "two_column_body.html" %}
+{% import "macros.html" as macros %}
+<!-- users.html -->
+{% block title %}{% spaceless %}{% trans %}Users{% endtrans %}{% endspaceless %}{% endblock %}
+{% block content %}
+<div class="tabBar">
+    <div class="headUsers">{% trans %}Users{% endtrans %}</div>
+    <div class="tabsA">
+        <a 
+            id="sort_reputation"
+            href="{% url users %}?sort=reputation"
+            {% if tab_id == 'reputation' %}class="on"{% endif %}
+            title="{% trans %}reputation{% endtrans %}"
+        >{% trans %}reputation{% endtrans %}</a>
+        <a 
+            id="sort_newest"
+            href="{% url users %}?sort=newest"
+            {% if tab_id == 'newest' %}class="on"{% endif %}
+            class="off" title="{% trans %}recent{% endtrans %}"
+        >{% trans %}recent{% endtrans %}</a>
+        <a 
+            id="sort_last"
+            href="{% url users %}?sort=last"
+            {% if tab_id == 'last' %}class="on"{% endif %}
+            class="off" title="{% trans %}oldest{% endtrans %}"
+        >{% trans %}oldest{% endtrans %}</a>
+        <a 
+            id="sort_user"
+            href="{% url users %}?sort=user"
+            {% if tab_id == 'user' %}class="on"{% endif %}
+            title="{% trans %}by username{% endtrans %}"
+        >{% trans %}by username{% endtrans %}</a>
+    </div>
+</div>
+<div id="main-body" style="width:100%">
+    <p>
+        {% if suser %}
+            {% trans %}users matching query {{suser}}:{% endtrans %}
+        {% endif %}
+        {% if not users.object_list %}
+            <span>{% trans %}Nothing found.{% endtrans %}</span>
+        {% endif %}
+    </p>
+    <div class="userList">
+        <table class="list-table">
+            <tr>
+                <td class="list-td">
+                    {% for user in users.object_list %}
+                    <div class="user">
+                        <ul>
+                                <li class="thumb">{{ macros.gravatar(user, 32) }}</li>
+                                <li><a href="{% url user_profile user.id, user.username|slugify %}">{{user.username}}</a></li>
+                                <li>{{ macros.user_score_and_badge_summary(user) }}</li>
+                            </ul>
+                    </div>
+                    
+            {% if loop.index is divisibleby 7 %}
+                </td>
+                <td>
+            {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>   
+        </table>
+    </div>
+</div>
+<div class="pager">
+    {{ macros.paginator(paginator_context) }}
+</div>              
+{% endblock %}
+{% block endjs %}
+    <script type="text/javascript">
+        //todo move javascript out
+        $().ready(function(){
+            Hilite.exact = false;
+            Hilite.elementid = "main-body";
+            Hilite.debug_referrer = location.href;
+        });
+    </script>
+{% endblock %}
+<!-- end users.html -->

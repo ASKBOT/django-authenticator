@@ -1,0 +1,32 @@
+{% import "macros.html" as macros %}
+<div id="askform">
+    <form id="fmask" action="" method="post" >
+        <div class="form-item">
+            <div id="askFormBar">
+                {% if not request.user.is_authenticated() %}
+                    <p>{% trans %}login to post question info{% endtrans %}</p>
+                {% else %}
+                    {% if settings.EMAIL_VALIDATION %}
+                        {% if not request.user.email_isvalid %}
+                                {% trans email=request.user.email %}must have valid {{email}} to post, 
+                                see {{email_validation_faq_url}}
+                                {% endtrans %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                <input id="id_title" class="questionTitleInput" name="title" 
+                    value="{% if form.initial.title %}{{form.initial.title}}{% endif %}"/>
+                <span class="form-error">{{ form.title.errors }}</span>
+            </div>
+            <div class="title-desc">
+                {{ form.title.help_text }}
+            </div>
+        </div>
+        {{macros.edit_post(form, settings.WIKI_ON, post_type='question', edit_title=False)}}
+        {% if not request.user.is_authenticated() %}
+        <input type="submit" name="post_anon" value="{% trans %}Login/signup to post your question{% endtrans %}" class="submit" />
+        {% else %}
+        <input type="submit" name="post" value="{% trans %}Ask your question{% endtrans %}" class="submit" />
+        {% endif %}
+    </form>
+</div>

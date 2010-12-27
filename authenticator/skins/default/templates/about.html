@@ -1,0 +1,13 @@
+{% extends "two_column_body.html" %}
+<!-- template about.html -->
+{% block title %}{% spaceless %}{% trans %}About{% endtrans %}{% endspaceless %}{% endblock %}
+{% block content %}
+<div class="headNormal">
+{% trans %}About{% endtrans %}
+</div>
+
+<div class="content">
+    {{settings.FORUM_ABOUT}}
+</div>
+{% endblock %}
+<!-- end template about.html -->
