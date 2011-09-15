@@ -1,12 +1,14 @@
+"""setup routine for ``django_authenticator``.
+Uses setuptools.
+"""
 import ez_setup
 ez_setup.use_setuptools()
 from setuptools import setup, find_packages
-import sys
 
 #NOTE: if you want to develop authenticator
 #you might want to install django-debug-toolbar as well
 
-install_requires = [
+INSTALL_REQUIRES = [
     'django-extra-form-fields',
     'django-registration',
     'import-utils',
@@ -21,8 +23,8 @@ import django_authenticator
 
 setup(
     name = "django-authenticator",
-    version = django_authenticator.get_version(),
-    description = 'authentication client and server',
+    version = django_authenticator.__version__,
+    description = 'authentication client for django',
     packages = find_packages(),
     author = 'Evgeny.Fadeev',
     author_email = 'evgeny.fadeev@gmail.com',
@@ -35,8 +37,12 @@ setup(
     },
     url = '',
     include_package_data = True,
-    install_requires = install_requires,
+    install_requires = INSTALL_REQUIRES,
     classifiers = [
+        'Development Status :: 2 - Pre-Alpha',
     ],
-    long_description = ''
+    long_description = """Note: this module is not yet ready for 
+use in production. Developed for askbot forum - please ask questions
+at `http://askbot.org <http://askbot.org>`_.
+"""
 )
