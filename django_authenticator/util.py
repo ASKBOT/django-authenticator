@@ -12,6 +12,7 @@ import oauth2 as oauth
 from import_utils import import_module_from
 
 from django.db.models.query import Q
+from django.conf import settings as django_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth.models import User
 from django.utils import simplejson
@@ -150,7 +151,7 @@ class DjangoOpenIDStore(OpenIDStore):
 
     def getAuthKey(self):
         # Use first AUTH_KEY_LEN characters of md5 hash of SECRET_KEY
-        return hashlib.md5(settings.SECRET_KEY).hexdigest()[:self.AUTH_KEY_LEN]
+        return hashlib.md5(django_settings.SECRET_KEY).hexdigest()[:self.AUTH_KEY_LEN]
     
     def isDumb(self):
         return False

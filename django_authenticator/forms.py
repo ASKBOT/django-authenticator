@@ -114,7 +114,7 @@ class OpenidSigninForm(forms.Form):
             openid_url = self.cleaned_data['openid_url']
             if xri.identifierScheme(openid_url) == 'XRI' and getattr(
                 settings, 'OPENID_DISALLOW_INAMES', False
-                ):
+            ):
                 raise forms.ValidationError(_('i-names are not supported'))
             return self.cleaned_data['openid_url']
 

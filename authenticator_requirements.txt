@@ -1,0 +1,8 @@
+django-extra-form-fields
+import-utils
+multi-registry
+oauth2
+python-openid
+django-registration
+python-wordpress-xmlrpc
+South

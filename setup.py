@@ -7,24 +7,21 @@ import sys
 #you might want to install django-debug-toolbar as well
 
 install_requires = [
-    'django==1.1.2',
-    'Jinja2',
-    'Coffin==0.3.0',
-    'South>=0.7.1',
+    'django-extra-form-fields',
+    'django-registration',
+    'import-utils',
+    'multi-registry',
+    'South',
     'oauth2',
-    'recaptcha-client',
-    'markdown2',
-    'html5lib',
-    'django-keyedcache',
-    'django-threaded-multihost',
-    'unidecode',
+    'python-openid',
+    'python-wordpress-xmlrpc',
 ]
 
-import authenticator
+import django_authenticator
 
 setup(
-    name = "authenticator",
-    version = authenticator.get_version(),
+    name = "django-authenticator",
+    version = django_authenticator.get_version(),
     description = 'authentication client and server',
     packages = find_packages(),
     author = 'Evgeny.Fadeev',
