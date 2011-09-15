@@ -4,6 +4,7 @@ from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+APP_NAME = os.path.basename(os.path.dirname(os.path.dirname(__file__)))
 class Migration(SchemaMigration):
     
     def forwards(self, orm):
@@ -79,7 +80,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'django_authopenid.association': {
+        APP_NAME + '.association': {
             'Meta': {'object_name': 'Association'},
             'assoc_type': ('django.db.models.fields.TextField', [], {'max_length': '64'}),
             'handle': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
@@ -89,21 +90,21 @@ class Migration(SchemaMigration):
             'secret': ('django.db.models.fields.TextField', [], {'max_length': '255'}),
             'server_url': ('django.db.models.fields.TextField', [], {'max_length': '2047'})
         },
-        'django_authopenid.externallogindata': {
+        APP_NAME + '.externallogindata': {
             'Meta': {'object_name': 'ExternalLoginData'},
             'external_session_data': ('django.db.models.fields.TextField', [], {}),
             'external_username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '40'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'})
         },
-        'django_authopenid.nonce': {
+        APP_NAME + '.nonce': {
             'Meta': {'object_name': 'Nonce'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'salt': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'server_url': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'timestamp': ('django.db.models.fields.IntegerField', [], {})
         },
-        'django_authopenid.userassociation': {
+        APP_NAME + '.userassociation': {
             'Meta': {'unique_together': "(('user', 'provider_name'), ('openid_url', 'provider_name'))", 'object_name': 'UserAssociation'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_used_timestamp': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
@@ -111,7 +112,7 @@ class Migration(SchemaMigration):
             'provider_name': ('django.db.models.fields.CharField', [], {'default': "'unknown'", 'max_length': '64'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
-        'django_authopenid.userpasswordqueue': {
+        APP_NAME + '.userpasswordqueue': {
             'Meta': {'object_name': 'UserPasswordQueue'},
             'confirm_key': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -120,4 +121,4 @@ class Migration(SchemaMigration):
         }
     }
     
-    complete_apps = ['django_authopenid']
+    complete_apps = [APP_NAME]
