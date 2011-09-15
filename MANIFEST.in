@@ -5,7 +5,7 @@ recursive-exclude .git
 prune dist
 prune tmp
 prune build
-prine env
+prune env
 exclude settings.py
 exclude manage.py
 exclude __init__.py
