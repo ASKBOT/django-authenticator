@@ -37,6 +37,24 @@ __all__ = ['OpenID', 'DjangoOpenIDStore', 'from_openid_response']
 
 ALLOWED_LOGIN_TYPES = ('password', 'oauth', 'openid-direct', 'openid-username', 'wordpress')
 
+def migration_was_applied(migration_file_path, app_name):
+    """true, if migration with a given path was applied
+    to app with name ``app_name``
+    todo: this belongs to a separate module, maybe South
+    """
+    import os
+    from south.models import MigrationHistory
+    try:
+        migration_file = os.path.basename(migration_file_path)
+        migration_name = migration_file.split('.')[0]
+        MigrationHistory.objects.get(
+            app_name = app_name,
+            migration = migration_name
+        )
+        return True
+    except MigrationHistory.DoesNotExist:
+        return False
+
 def get_openid_provider_name(openid_url):
     """returns provider name from the openid_url
     """
