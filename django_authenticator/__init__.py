@@ -37,7 +37,7 @@ This application allow a user to connect to you website with :
  * openid url
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 #list of providers supported by this app
 #this list is duplicated in the default_settings.py
