@@ -26,7 +26,7 @@ class Migration(SchemaMigration):
             ('external_session_data', self.gf('django.db.models.fields.TextField')()),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True)),
         ))
-        db.send_create_signal('django_authopenid', ['ExternalLoginData'])
+        db.send_create_signal('django_auth', ['ExternalLoginData'])
     
     
     models = {

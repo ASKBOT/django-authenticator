@@ -19,7 +19,7 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('server_url', self.gf('django.db.models.fields.CharField')(max_length=255)),
         ))
-        db.send_create_signal('django_authopenid', ['Nonce'])
+        db.send_create_signal('django_authenticator', ['Nonce'])
 
         # Adding model 'Association'
         db.create_table('django_authopenid_association', (
@@ -31,7 +31,7 @@ class Migration(SchemaMigration):
             ('lifetime', self.gf('django.db.models.fields.IntegerField')()),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
         ))
-        db.send_create_signal('django_authopenid', ['Association'])
+        db.send_create_signal('django_authenticator', ['Association'])
 
         # Adding model 'UserAssociation'
         db.create_table('django_authopenid_userassociation', (
@@ -39,7 +39,7 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('openid_url', self.gf('django.db.models.fields.CharField')(max_length=255)),
         ))
-        db.send_create_signal('django_authopenid', ['UserAssociation'])
+        db.send_create_signal('django_authenticator', ['UserAssociation'])
 
         # Adding model 'UserPasswordQueue'
         db.create_table('django_authopenid_userpasswordqueue', (
@@ -48,7 +48,7 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], unique=True)),
         ))
-        db.send_create_signal('django_authopenid', ['UserPasswordQueue'])
+        db.send_create_signal('django_authenticator', ['UserPasswordQueue'])
 
         # Adding model 'ExternalLoginData'
         db.create_table('django_authopenid_externallogindata', (
@@ -57,7 +57,7 @@ class Migration(SchemaMigration):
             ('external_session_data', self.gf('django.db.models.fields.TextField')()),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True)),
         ))
-        db.send_create_signal('django_authopenid', ['ExternalLoginData'])
+        db.send_create_signal('django_authenticator', ['ExternalLoginData'])
     
     
     def backwards(self, orm):
