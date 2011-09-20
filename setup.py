@@ -30,11 +30,6 @@ setup(
     author_email = 'evgeny.fadeev@gmail.com',
     license = 'GPLv3',
     keywords = 'authentication, oauth, openid',
-    entry_points = {
-        'console_scripts' : [
-            'startforum = authenticator.deployment:startforum',
-        ]
-    },
     url = '',
     include_package_data = True,
     install_requires = INSTALL_REQUIRES,
